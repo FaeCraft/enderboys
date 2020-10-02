@@ -10,10 +10,9 @@ import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.client.render.entity.model.EndermanEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.util.math.Vector3f;
-import net.minecraft.entity.mob.EndermanEntity;
+import net.minecraft.entity.Entity;
 
 @Environment(EnvType.CLIENT)
 public class EnderboyBlockFeatureRenderer extends FeatureRenderer<EnderboyEntity, EnderboyEntityModel<EnderboyEntity>> {
@@ -31,7 +30,7 @@ public class EnderboyBlockFeatureRenderer extends FeatureRenderer<EnderboyEntity
                        float headYaw,
                        float headPitch) {
 
-        BlockState blockState = EnderboyEntity.getCarriedBlock();
+        BlockState blockState = Entity.getCarriedBlock();
         if (blockState != null) {
             matrices.push();
             matrices.translate(0.0D, 0.6875D, -0.75D);
@@ -41,7 +40,11 @@ public class EnderboyBlockFeatureRenderer extends FeatureRenderer<EnderboyEntity
             float m = 0.5F;
             matrices.scale(-0.5F, -0.5F, 0.5F);
             matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(90.0F));
-            MinecraftClient.getInstance().getBlockRenderManager().renderBlockAsEntity(blockState, matrices, vertexConsumers, light, OverlayTexture.DEFAULT_UV);
+            MinecraftClient.getInstance().getBlockRenderManager().renderBlockAsEntity(blockState,
+                    matrices,
+                    vertexConsumers,
+                    light,
+                    OverlayTexture.DEFAULT_UV);
             matrices.pop();
         }
 
