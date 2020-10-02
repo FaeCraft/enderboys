@@ -7,6 +7,8 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.item.Item;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -19,9 +21,20 @@ public class Enderboy implements ModInitializer {
 
     );
 
+    public static final SpawnEggItem ENDERBOY_SPAWN_EGG = new SpawnEggItem(
+            Enderboy.ENDERBOY,
+            0x2B2B2B,
+            0xCC00FA,
+            new (Item.Settings()).group(GROUP)
+    )
+
     @Override
     public void onInitialize() {
         FabricDefaultAttributeRegistry.register(ENDERBOY, EnderboyEntity.createMobAttributes());
 
+        Registry.register(Registry.ITEM, new Indetifier("enderboy_spawn_egg"), ENDERBOY_SPAWN_EGG);
+        }
     }
+
+
 }
