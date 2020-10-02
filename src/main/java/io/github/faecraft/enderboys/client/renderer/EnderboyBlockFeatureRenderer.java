@@ -30,7 +30,7 @@ public class EnderboyBlockFeatureRenderer extends FeatureRenderer<EnderboyEntity
                        float headYaw,
                        float headPitch) {
 
-        BlockState blockState = Entity.getCarriedBlock();
+        BlockState blockState = entity.getCarriedBlock();
         if (blockState != null) {
             matrices.push();
             matrices.translate(0.0D, 0.6875D, -0.75D);
