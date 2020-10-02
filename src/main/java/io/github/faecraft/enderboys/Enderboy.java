@@ -2,12 +2,14 @@ package io.github.faecraft.enderboys;
 
 import io.github.faecraft.enderboys.entity.EnderboyEntity;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -16,7 +18,7 @@ public class Enderboy implements ModInitializer {
 
     public static final EntityType<EnderboyEntity> ENDERBOY = net.minecraft.util.registry.Registry.register(
             Registry.ENTITY_TYPE,
-            new Identifier("enderboy"),
+            new Identifier("enderboys","enderboy"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EnderboyEntity::new).dimensions(EntityDimensions.fixed(0.75f,0.75f)).build()
 
     );
@@ -25,16 +27,13 @@ public class Enderboy implements ModInitializer {
             Enderboy.ENDERBOY,
             0x2B2B2B,
             0xCC00FA,
-            new (Item.Settings()).group(GROUP)
-    )
+            new FabricItemSettings().group(ItemGroup.MISC)
+    );
 
     @Override
     public void onInitialize() {
         FabricDefaultAttributeRegistry.register(ENDERBOY, EnderboyEntity.createMobAttributes());
 
-        Registry.register(Registry.ITEM, new Indetifier("enderboy_spawn_egg"), ENDERBOY_SPAWN_EGG);
+        Registry.register(Registry.ITEM, new Identifier("enderboys","enderboy_spawn_egg"), ENDERBOY_SPAWN_EGG);
         }
-    }
-
-
 }
