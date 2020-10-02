@@ -22,23 +22,29 @@ public class EnderboyBlockFeatureRenderer extends FeatureRenderer<EnderboyEntity
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, EnderboyEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers,
+                       int light, EnderboyEntity entity,
+                       float limbAngle,
+                       float limbDistance,
+                       float tickDelta,
+                       float animationProgress,
+                       float headYaw,
+                       float headPitch) {
 
-    }
-
-    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, EndermanEntity endermanEntity, float f, float g, float h, float j, float k, float l) {
-        BlockState blockState = endermanEntity.getCarriedBlock();
+        BlockState blockState = EnderboyEntity.getCarriedBlock();
         if (blockState != null) {
-            matrixStack.push();
-            matrixStack.translate(0.0D, 0.6875D, -0.75D);
-            matrixStack.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(20.0F));
-            matrixStack.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(45.0F));
-            matrixStack.translate(0.25D, 0.1875D, 0.25D);
+            matrices.push();
+            matrices.translate(0.0D, 0.6875D, -0.75D);
+            matrices.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(20.0F));
+            matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(45.0F));
+            matrices.translate(0.25D, 0.1875D, 0.25D);
             float m = 0.5F;
-            matrixStack.scale(-0.5F, -0.5F, 0.5F);
-            matrixStack.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(90.0F));
-            MinecraftClient.getInstance().getBlockRenderManager().renderBlockAsEntity(blockState, matrixStack, vertexConsumerProvider, i, OverlayTexture.DEFAULT_UV);
-            matrixStack.pop();
+            matrices.scale(-0.5F, -0.5F, 0.5F);
+            matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(90.0F));
+            MinecraftClient.getInstance().getBlockRenderManager().renderBlockAsEntity(blockState, matrices, vertexConsumers, light, OverlayTexture.DEFAULT_UV);
+            matrices.pop();
         }
+
+
     }
 }
