@@ -1,25 +1,28 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "enderboys",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Enderboys",
+  "description": "The Smash Bros. Ultimate 2-block enderman, now as a real mob!",
   "authors": [
-    "Me!"
+    "sakiraart"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "CurseForge": "https://www.curseforge.com/members/sakiraart/projects",
+    "GitHub": "https://github.com/sakiraa"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "ARR",
+  "icon": "assets/enderboys/enderboys_icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "io.github.faecraft.enderboys.Enderboy"
+    ],
+    "client": [
+      "io.github.faecraft.enderboys.EnderboyClient"
     ]
   },
   "mixins": [
