@@ -9,9 +9,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.render.entity.feature.EndermanBlockFeatureRenderer;
-import net.minecraft.client.render.entity.feature.EndermanEyesFeatureRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 
@@ -24,8 +22,8 @@ public class EnderboyEntityRenderer extends MobEntityRenderer<EnderboyEntity, En
 
     public EnderboyEntityRenderer(EntityRenderDispatcher entityRenderDispatcher) {
         super(entityRenderDispatcher, new EnderboyEntityModel(0.0F), 0.5F);
-        this.addFeature(new EndermanEyesFeatureRenderer(this));
-        this.addFeature(new EndermanBlockFeatureRenderer(this));
+        this.addFeature(new EnderboyEyesFeatureRenderer(this));
+        this.addFeature(new EnderboyBlockFeatureRenderer(this));
     }
 
     public void render(EnderboyEntity EnderboyEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
