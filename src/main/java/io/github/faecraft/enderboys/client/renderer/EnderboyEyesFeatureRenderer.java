@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class EnderboyEyesFeatureRenderer<T extends LivingEntity> extends EyesFeatureRenderer<T, EnderboyEntityModel<T>> {
-    private static final RenderLayer SKIN = RenderLayer.getEyes(new Identifier("textures/entity/enderboy_eyes.png"));
+    private static final RenderLayer SKIN = RenderLayer.getEyes(new Identifier("enderboys", "textures/entity/enderboy_eyes.png"));
 
     public EnderboyEyesFeatureRenderer(FeatureRendererContext<T, EnderboyEntityModel<T>> featureRendererContext) {
         super(featureRendererContext);

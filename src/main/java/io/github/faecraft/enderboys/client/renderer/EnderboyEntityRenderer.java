@@ -17,7 +17,7 @@ import java.util.Random;
 
 @Environment(EnvType.CLIENT)
 public class EnderboyEntityRenderer extends MobEntityRenderer<EnderboyEntity, EnderboyEntityModel<EnderboyEntity>> {
-    private static final Identifier TEXTURE = new Identifier("textures/entity/enderboy.png");
+    private static final Identifier TEXTURE = new Identifier("enderboys", "textures/entity/enderboy.png");
     private final Random random = new Random();
 
     public EnderboyEntityRenderer(EntityRenderDispatcher entityRenderDispatcher) {
@@ -28,7 +28,7 @@ public class EnderboyEntityRenderer extends MobEntityRenderer<EnderboyEntity, En
 
     public void render(EnderboyEntity EnderboyEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
         BlockState blockState = EnderboyEntity.getCarriedBlock();
-        EnderboyEntityModel<EnderboyEntity> EnderboyEntityModel = (EnderboyEntityModel)this.getModel();
+        EnderboyEntityModel<EnderboyEntity> EnderboyEntityModel = this.getModel();
         EnderboyEntityModel.carryingBlock = blockState != null;
         EnderboyEntityModel.angry = EnderboyEntity.isAngry();
         super.render(EnderboyEntity, f, g, matrixStack, vertexConsumerProvider, i);
