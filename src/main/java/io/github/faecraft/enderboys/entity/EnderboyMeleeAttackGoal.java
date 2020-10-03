@@ -1,5 +1,6 @@
 package io.github.faecraft.enderboys.entity;
 
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
@@ -10,20 +11,11 @@ public class EnderboyMeleeAttackGoal extends MeleeAttackGoal {
     }
 
     @Override
-    public boolean canStart() {
+    protected void attack(LivingEntity target, double squaredDistance) {
         if (this.mob.getTarget() instanceof EndermanEntity) {
-            return false;
+            return;
         }
 
-        return super.canStart();
-    }
-
-    @Override
-    public boolean shouldContinue() {
-        if (this.mob.getTarget() instanceof EndermanEntity) {
-            return false;
-        }
-
-        return super.shouldContinue();
+        super.attack(target, squaredDistance);
     }
 }

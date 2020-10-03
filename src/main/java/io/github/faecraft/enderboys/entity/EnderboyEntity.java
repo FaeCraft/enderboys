@@ -45,7 +45,6 @@ import java.util.UUID;
 import java.util.function.Predicate;
 
 public class EnderboyEntity extends EndermanEntity implements Angerable {
-
     private static final UUID ATTACKING_SPEED_BOOST_ID = UUID.fromString("020E0DFB-87AE-4653-9556-831010E291A0");
     private static final EntityAttributeModifier ATTACKING_SPEED_BOOST;
     private static final TrackedData<Optional<BlockState>> CARRIED_BLOCK;
@@ -68,6 +67,7 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new EnderboyEntity.ChasePlayerGoal(this));
         this.goalSelector.add(2, new EnderboyMeleeAttackGoal(this, 1.0D, false));
+        this.goalSelector.add(3, new EnderboyEntity.FollowEntityGoal(this));
         this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0D, 0.0F));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.add(8, new LookAroundGoal(this));
@@ -76,7 +76,6 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
         this.targetSelector.add(1, new EnderboyEntity.TeleportTowardsPlayerGoal(this, this::shouldAngerAt));
         this.targetSelector.add(2, new RevengeGoal(this, new Class[0]));
         this.targetSelector.add(3, new FollowTargetGoal(this, EndermiteEntity.class, 10, true, false, PLAYER_ENDERMITE_PREDICATE));
-        this.targetSelector.add(3, new EnderboyEntity.FollowEntityGoal(this));
         this.targetSelector.add(4, new UniversalAngerGoal(this, false));
     }
 
