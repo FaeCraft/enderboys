@@ -7,6 +7,7 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.EndermanEntityRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.EndermanEntityModel;
+import net.minecraft.client.render.entity.model.EndermiteEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -60,6 +61,51 @@ public class EnderboyEntityModel<T extends LivingEntity> extends BipedEntityMode
 						  float netHeadYaw,
 						  float headPitch) {
 		super.setAngles(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+
+		ModelPart var10000 = this.right_leg;
+		var10000.pitch -= 0.0F;
+		var10000 = this.left_leg;
+		var10000.pitch -= 0.0F;
+		var10000 = this.right_arm;
+		var10000.pitch = (float)((double)var10000.pitch * 0.5D);
+		var10000 = this.left_arm;
+		var10000.pitch = (float)((double)var10000.pitch * 0.5D);
+		var10000 = this.right_leg;
+		var10000.pitch = (float)((double)var10000.pitch * 0.5D);
+		var10000 = this.left_leg;
+		var10000.pitch = (float)((double)var10000.pitch * 0.5D);
+		float l = 0.4F;
+		if (this.right_arm.pitch > 0.4F) {
+			this.right_arm.pitch = 0.4F;
+		}
+
+		if (this.left_arm.pitch > 0.4F) {
+			this.left_arm.pitch = 0.4F;
+		}
+
+		if (this.right_arm.pitch < -0.4F) {
+			this.right_arm.pitch = -0.4F;
+		}
+
+		if (this.left_arm.pitch < -0.4F) {
+			this.left_arm.pitch = -0.4F;
+		}
+
+		if (this.right_leg.pitch > 0.4F) {
+			this.right_leg.pitch = 0.4F;
+		}
+
+		if (this.left_leg.pitch > 0.4F) {
+			this.left_leg.pitch = 0.4F;
+		}
+
+		if (this.right_leg.pitch < -0.4F) {
+			this.right_leg.pitch = -0.4F;
+		}
+
+		if (this.left_leg.pitch < -0.4F) {
+			this.left_leg.pitch = -0.4F;
+		}
 
 		if (this.carryingBlock) {
 			this.right_arm.pitch = -1F;
