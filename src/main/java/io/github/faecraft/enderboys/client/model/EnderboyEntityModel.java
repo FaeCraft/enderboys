@@ -62,6 +62,11 @@ public class EnderboyEntityModel<T extends LivingEntity> extends BipedEntityMode
 						  float headPitch) {
 		super.setAngles(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 
+		float k = -14.0F;
+		this.torso.pitch = 0.0F;
+		this.torso.pivotY = -14.0F;
+		this.torso.pivotZ = -0.0F;
+
 		ModelPart var10000 = this.right_leg;
 		var10000.pitch -= 0.0F;
 		var10000 = this.left_leg;
@@ -114,6 +119,7 @@ public class EnderboyEntityModel<T extends LivingEntity> extends BipedEntityMode
 			this.left_arm.roll = -0.1F;
 		}
 	}
+
 
 	@Override
 	public void render(MatrixStack matrixStack, VertexConsumer	buffer,
