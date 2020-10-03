@@ -87,7 +87,7 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
     public void setTarget(@Nullable LivingEntity target) {
         super.setTarget(target);
         EntityAttributeInstance entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-        if (target == null) {
+        if (target == null || target instanceof EndermanEntity) {
             this.ageWhenTargetSet = 0;
             this.dataTracker.set(ANGRY, false);
             this.dataTracker.set(PROVOKED, false);
