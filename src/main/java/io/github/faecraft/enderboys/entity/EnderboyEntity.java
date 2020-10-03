@@ -1,5 +1,6 @@
 package io.github.faecraft.enderboys.entity;
 
+import io.github.faecraft.enderboys.Enderboy;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -64,7 +65,6 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new EnderboyEntity.ChasePlayerGoal(this));
-        this.goalSelector.add(1, new EnderboyEntity.FollowMobGoal(this));
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0D, 0.0F));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
@@ -74,6 +74,7 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
         this.targetSelector.add(1, new EnderboyEntity.TeleportTowardsPlayerGoal(this, this::shouldAngerAt));
         this.targetSelector.add(2, new RevengeGoal(this, new Class[0]));
         this.targetSelector.add(3, new FollowTargetGoal(this, EndermiteEntity.class, 10, true, false, PLAYER_ENDERMITE_PREDICATE));
+        this.targetSelector.add(3, new EnderboyEntity.FollowEntityGoal(this));
         this.targetSelector.add(4, new UniversalAngerGoal(this, false));
     }
 
@@ -523,24 +524,15 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
         }
     }
 
-    static class FollowMobGoal extends Goal {
-        private final EnderboyEntity enderboy;
-        private LivingEntity target;
-
-        public FollowMobGoal(EnderboyEntity enderboy) {
-            this.enderboy = enderboy;
-            this.setControls(EnumSet.of(Control.JUMP, Control.MOVE));
+    static class FollowEntityGoal extends FollowTargetGoal<LivingEntity> {
+        public FollowEntityGoal(EnderboyEntity enderboy) {
+            super(enderboy, LivingEntity.class, 0, true, true, LivingEntity::isMobOrPlayer);
         }
 
-        public boolean canStart() {
-            this.target = this.enderboy.getTarget();
-            if (!(this.target instanceof EndermanEntity)) {
-                return false;
-            } else {
-                double d = this.target.squaredDistanceTo(this.enderboy);
-                return d > 256.0D ? false : this.enderboy.isPlayerStaring((PlayerEntity) this.target);
-            }
-
+        public void start() {
+            super.start();
+            this.mob.setDespawnCounter(0);
         }
     }
+
 }
