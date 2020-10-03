@@ -78,7 +78,7 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
         this.targetSelector.add(4, new UniversalAngerGoal(this, false));
     }
 
-    public static DefaultAttributeContainer.Builder createEnderboyAttributes() {
+    public static DefaultAttributeContainer.Builder createMobAttributes() {
         return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 25.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.5D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
     }
 
