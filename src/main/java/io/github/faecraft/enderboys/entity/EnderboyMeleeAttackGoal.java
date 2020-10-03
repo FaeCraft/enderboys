@@ -18,4 +18,14 @@ public class EnderboyMeleeAttackGoal extends MeleeAttackGoal {
 
         super.attack(target, squaredDistance);
     }
+
+    @Override
+    public void tick() {
+        if (this.mob.getTarget() == null) {
+            this.stop();
+            return;
+        }
+
+        super.tick();
+    }
 }
