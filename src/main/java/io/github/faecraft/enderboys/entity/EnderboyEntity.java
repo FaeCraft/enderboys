@@ -17,10 +17,7 @@ import net.minecraft.entity.damage.ProjectileDamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.mob.Angerable;
-import net.minecraft.entity.mob.EndermanEntity;
-import net.minecraft.entity.mob.EndermiteEntity;
-import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
@@ -67,7 +64,7 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new EnderboyEntity.ChasePlayerGoal(this));
-        this.goalSelector.add(1, new EnderboyEntity.ChaseEndermanGoal(this));
+        this.goalSelector.add(1, new EnderboyEntity.FollowMobGoal());
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0D, 0.0F));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
@@ -75,7 +72,6 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
         this.goalSelector.add(10, new EnderboyEntity.PlaceBlockGoal(this));
         this.goalSelector.add(11, new EnderboyEntity.PickUpBlockGoal(this));
         this.targetSelector.add(1, new EnderboyEntity.TeleportTowardsPlayerGoal(this, this::shouldAngerAt));
-        this.targetSelector.add(1, new EnderboyEntity.TeleportTowardsEndermanGoal(this));
         this.targetSelector.add(2, new RevengeGoal(this, new Class[0]));
         this.targetSelector.add(3, new FollowTargetGoal(this, EndermiteEntity.class, 10, true, false, PLAYER_ENDERMITE_PREDICATE));
         this.targetSelector.add(4, new UniversalAngerGoal(this, false));
@@ -527,44 +523,8 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
         }
     }
 
-    static class ChaseEndermanGoal extends Goal {
-        private final EnderboyEntity enderboy;
-        private LivingEntity target;
+    public void FollowMobGoal(MobEntity) {
 
-        public ChaseEndermanGoal(EnderboyEntity enderboy) {
-            this.enderboy = enderboy;
-            this.setControls(EnumSet.of(Control.JUMP, Control.MOVE));
-        }
-
-        public boolean canStart() {
-            this.target = this.enderboy.getTarget();
-            if (!(this.target instanceof EndermanEntity)) {
-                return false;
-            } else {
-                double d = this.target.squaredDistanceTo(this.enderboy);
-                return d > 256.0D ? false : this.enderboy.isPlayerStaring((PlayerEntity)this.target);
-            }
-        }
-
-        public void start() {
-            this.enderboy.getNavigation().stop();
-        }
     }
 
-    static class TeleportTowardsEndermanGoal extends FollowTargetGoal<EndermanEntity> {
-        private final EnderboyEntity enderboy;
-        private EndermanEntity targetEnderman;
-
-        public TeleportTowardsEndermanGoal(EnderboyEntity enderboy, @Nullable Predicate<LivingEntity> predicate) {
-            super(enderboy, EndermanEntity.class, 10, false, false, predicate);
-            this.enderboy = enderboy;
-
-        }
-
-        public boolean canStart() {
-            this.targetEnderman = this.enderboy.world.getClosestEntity();
-            return this.targetEnderman != null;
-
-        }
-    }
 }
