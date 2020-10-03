@@ -523,7 +523,8 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
         }
     }
 
-    public void FollowMobGoal(MobEntity) {
+    static class FollowMobGoal extends Goal {
+
 
     }
 
