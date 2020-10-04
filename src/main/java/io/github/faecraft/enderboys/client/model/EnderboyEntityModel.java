@@ -74,37 +74,6 @@ public class EnderboyEntityModel<T extends LivingEntity> extends BipedEntityMode
 		left_leg.pitch = MathHelper.cos(limbSwing * 1f) * 0.7f * limbSwingAmount;
 		right_leg.pitch = MathHelper.cos(limbSwing * 1f + (float) Math.PI) * 0.7f * limbSwingAmount;
 
-		if (this.right_arm.pitch > 0.4F) {
-			this.right_arm.pitch = 0.4F;
-		}
-
-		if (this.left_arm.pitch > 0.4F) {
-			this.left_arm.pitch = 0.4F;
-		}
-
-		if (this.right_arm.pitch < -0.4F) {
-			this.right_arm.pitch = -0.4F;
-		}
-
-		if (this.left_arm.pitch < -0.4F) {
-			this.left_arm.pitch = -0.4F;
-		}
-
-		if (this.right_leg.pitch > 0.4F) {
-			this.right_leg.pitch = 0.4F;
-		}
-
-		if (this.left_leg.pitch > 0.4F) {
-			this.left_leg.pitch = 0.4F;
-		}
-
-		if (this.right_leg.pitch < -0.4F) {
-			this.right_leg.pitch = -0.4F;
-		}
-
-		if (this.left_leg.pitch < -0.4F) {
-			this.left_leg.pitch = -0.4F;
-		}
 
 		if (this.carryingBlock) {
 			this.right_arm.pitch = -1F;

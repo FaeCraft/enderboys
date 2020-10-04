@@ -34,7 +34,7 @@ public class EnderboyBlockFeatureRenderer extends FeatureRenderer<EnderboyEntity
         BlockState blockState = entity.getCarriedBlock();
         if (blockState != null) {
             matrices.push();
-            matrices.translate(0.0D, 0.6875D, -0.75D);
+            matrices.translate(0.0D, 0.5D, -0.45D);
             matrices.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(20.0F));
             matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(45.0F));
             matrices.translate(0.25D, 0.1875D, 0.25D);
