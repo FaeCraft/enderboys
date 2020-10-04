@@ -514,7 +514,15 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
 
     static class FollowEntityGoal extends FollowTargetGoal<EndermanEntity> {
         public FollowEntityGoal(EnderboyEntity enderboy) {
-            super(enderboy, EndermanEntity.class, 0, true, true, LivingEntity::isMobOrPlayer);
+            super(
+                    enderboy,
+                    EndermanEntity.class,
+                    0,
+                    true,
+                    true,
+                    (entity) -> entity instanceof EndermanEntity
+                            && !(entity instanceof EnderboyEntity)
+            );
         }
 
         public void start() {
