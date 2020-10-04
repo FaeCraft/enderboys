@@ -20,7 +20,7 @@ public class Enderboy implements ModInitializer {
     public static final EntityType<EnderboyEntity> ENDERBOY = net.minecraft.util.registry.Registry.register(
             Registry.ENTITY_TYPE,
             new Identifier("enderboys","enderboy"),
-            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EnderboyEntity::new).dimensions(EntityDimensions.fixed(0.75f,0.75f)).build()
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EnderboyEntity::new).dimensions(EntityDimensions.fixed(0.55f,2.0f)).build()
 
     );
 

@@ -105,28 +105,17 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
         super.initDataTracker();
         this.dataTracker.startTracking(CARRIED_BLOCK, Optional.empty());
         this.dataTracker.startTracking(ANGRY, false);
-        this.dataTracker.startTracking(PROVOKED, false);
-    }
+        this.dataTracker.startTracking(PROVOKED, false); }
 
-    public void chooseRandomAngerTime() {
-        this.setAngerTime(ANGER_TIME_RANGE.choose(this.random));
-    }
+    public void chooseRandomAngerTime() { this.setAngerTime(ANGER_TIME_RANGE.choose(this.random)); }
 
-    public void setAngerTime(int ticks) {
-        this.angerTime = ticks;
-    }
+    public void setAngerTime(int ticks) { this.angerTime = ticks; }
 
-    public int getAngerTime() {
-        return this.angerTime;
-    }
+    public int getAngerTime() { return this.angerTime; }
 
-    public void setAngryAt(@Nullable UUID uuid) {
-        this.targetUuid = uuid;
-    }
+    public void setAngryAt(@Nullable UUID uuid) { this.targetUuid = uuid; }
 
-    public UUID getAngryAt() {
-        return this.targetUuid;
-    }
+    public UUID getAngryAt() { return this.targetUuid; }
 
     public void playAngrySound() {
         if (this.age >= this.lastAngrySoundAge + 400) {
@@ -171,7 +160,7 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
     }
 
     private boolean isPlayerStaring(PlayerEntity player) {
-        ItemStack itemStack = (ItemStack) player.inventory.armor.get(3);
+        ItemStack itemStack = player.inventory.armor.get(3);
         if (itemStack.getItem() == Blocks.CARVED_PUMPKIN.asItem()) {
             return false;
         } else {
@@ -180,13 +169,11 @@ public class EnderboyEntity extends EndermanEntity implements Angerable {
             double d = vec3d2.length();
             vec3d2 = vec3d2.normalize();
             double e = vec3d.dotProduct(vec3d2);
-            return e > 1.0D - 0.025D / d ? player.canSee(this) : false;
+            return e > 1.0D - 0.025D / d && player.canSee(this);
         }
     }
 
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return 2.55F;
-    }
+    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) { return 1.73F; }
 
     public void tickMovement() {
         if (this.world.isClient) {
