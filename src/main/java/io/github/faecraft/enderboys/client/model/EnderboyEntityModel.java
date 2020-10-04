@@ -11,6 +11,7 @@ import net.minecraft.client.render.entity.model.EndermiteEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
 public class EnderboyEntityModel<T extends LivingEntity> extends BipedEntityModel<T> {
@@ -62,24 +63,17 @@ public class EnderboyEntityModel<T extends LivingEntity> extends BipedEntityMode
 						  float headPitch) {
 		super.setAngles(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 
-		float k = -14.0F;
 		this.torso.pitch = 0.0F;
 		this.torso.pivotY = -14.0F;
 		this.torso.pivotZ = -0.0F;
 
-		ModelPart var10000 = this.right_leg;
-		var10000.pitch -= 0.0F;
-		var10000 = this.left_leg;
-		var10000.pitch -= 0.0F;
-		var10000 = this.right_arm;
-		var10000.pitch = (float)((double)var10000.pitch * 0.5D);
-		var10000 = this.left_arm;
-		var10000.pitch = (float)((double)var10000.pitch * 0.5D);
-		var10000 = this.right_leg;
-		var10000.pitch = (float)((double)var10000.pitch * 0.5D);
-		var10000 = this.left_leg;
-		var10000.pitch = (float)((double)var10000.pitch * 0.5D);
-		float l = 0.4F;
+		this.left_arm.pitch = (float)((double)left_arm.pitch * 0.5D);
+
+		this.right_arm.pitch = (float)((double)right_arm.pitch * 0.5D);
+
+		left_leg.pitch = MathHelper.cos(limbSwing * 1f) * 0.7f * limbSwingAmount;
+		right_leg.pitch = MathHelper.cos(limbSwing * 1f + Math.PI.toFloat()) * 0.7f * limbSwingAmount;
+
 		if (this.right_arm.pitch > 0.4F) {
 			this.right_arm.pitch = 0.4F;
 		}
