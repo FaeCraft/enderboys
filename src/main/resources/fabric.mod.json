@@ -25,7 +25,9 @@
       "io.github.faecraft.enderboys.EnderboyClient"
     ]
   },
-
+  "mixins": [
+    "enderboys.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",

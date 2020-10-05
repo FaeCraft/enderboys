@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "io.github.faecraft.enderboys.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "DefaultBiomeFeaturesMixin"
+  ],
+  "client": [
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
