@@ -34,7 +34,8 @@ public class Enderboy implements ModInitializer {
     @Override
     public void onInitialize() {
         FabricDefaultAttributeRegistry.register(ENDERBOY, EnderboyEntity.createMobAttributes());
-
+        MobSpawn.addSpawnEntries();
+        MobSpawn.SpawnRestriction();
         Registry.register(Registry.ITEM, new Identifier("enderboys","enderboy_spawn_egg"), ENDERBOY_SPAWN_EGG);
         }
 }
