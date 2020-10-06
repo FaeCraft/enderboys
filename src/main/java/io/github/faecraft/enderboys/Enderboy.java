@@ -26,16 +26,14 @@ public class Enderboy implements ModInitializer {
 
     public static final SpawnEggItem ENDERBOY_SPAWN_EGG = new SpawnEggItem(
             Enderboy.ENDERBOY,
-            0x2B2B2B,
-            0xCC00FA,
+            0x262626,
+            0x000000,
             new FabricItemSettings().group(ItemGroup.MISC)
     );
 
     @Override
     public void onInitialize() {
         FabricDefaultAttributeRegistry.register(ENDERBOY, EnderboyEntity.createMobAttributes());
-        MobSpawn.addSpawnEntries();
-        MobSpawn.SpawnRestriction();
         Registry.register(Registry.ITEM, new Identifier("enderboys","enderboy_spawn_egg"), ENDERBOY_SPAWN_EGG);
         }
 }

@@ -68,12 +68,13 @@ public class EnderboyEntityModel<T extends LivingEntity> extends BipedEntityMode
 		this.torso.pivotZ = -0.0F;
 
 		this.left_arm.pitch = (float)((double)left_arm.pitch * 0.2D);
-
 		this.right_arm.pitch = (float)((double)right_arm.pitch * 0.2D);
 
 		left_leg.pitch = MathHelper.cos(limbSwing * 1f) * 0.7f * limbSwingAmount;
 		right_leg.pitch = MathHelper.cos(limbSwing * 1f + (float) Math.PI) * 0.7f * limbSwingAmount;
 
+		right_arm.pitch = MathHelper.cos(limbSwing * 1f) * 0.7f * limbSwingAmount;
+		left_arm.pitch = MathHelper.cos(limbSwing * 1f + (float) Math.PI) * 0.7f * limbSwingAmount;
 
 		if (this.carryingBlock) {
 			this.right_arm.pitch = -1F;
